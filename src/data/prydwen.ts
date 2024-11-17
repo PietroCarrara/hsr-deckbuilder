@@ -10,7 +10,7 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   Moze: gameData.relics["The Ashblazing Grand Duke"],
   Sparkle: gameData.relics["Sacerdos' Relived Ordeal"],
   Sushang: gameData.relics["Champion of Streetwise Boxing"],
-  // TODO: Welt and some other characters have more than one optimal sets on prydewen. How do we model this?
+  // TODO: Welt and some other characters have more than one optimal sets on prydwen. How do we model this?
   Welt: gameData.relics["Wastelander of Banditry Desert"],
 
   "Dan Heng": todo(),

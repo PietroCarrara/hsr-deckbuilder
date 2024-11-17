@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 export type PlayerInfo = z.infer<typeof playerInfoSchema>;
+export type HoyoCharacterInfo = PlayerInfo["data"]["avatar_list"][number];
+
 export const playerInfoSchema = z.object({
   data: z.object({
     avatar_list: z
