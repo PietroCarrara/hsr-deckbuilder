@@ -1,7 +1,7 @@
-import { lightCones } from "./data/light-cones";
+import { RelicPlanner } from "./relic-planner";
 
 function App() {
-  return <pre>{JSON.stringify(lightCones, undefined, 2)}</pre>;
+  return <RelicPlanner />;
 }
 
 export default App;

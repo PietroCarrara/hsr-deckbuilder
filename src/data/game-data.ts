@@ -7,7 +7,7 @@ export type RelicSet = (typeof gameData.relics)[RelicSetName];
 export const gameData = {
   characters: {
     "Preservation March 7th": {
-      id: "1001",
+      id: 1001,
       name: "March 7th",
       rarity: 4,
       path: "Preservation",
@@ -24,7 +24,7 @@ export const gameData = {
       unreleased: false,
     },
     "Dan Heng": {
-      id: "1002",
+      id: 1002,
       name: "Dan Heng",
       rarity: 4,
       path: "Hunt",
@@ -41,7 +41,7 @@ export const gameData = {
       unreleased: false,
     },
     Himeko: {
-      id: "1003",
+      id: 1003,
       name: "Himeko",
       rarity: 5,
       path: "Erudition",
@@ -58,7 +58,7 @@ export const gameData = {
       unreleased: false,
     },
     Welt: {
-      id: "1004",
+      id: 1004,
       name: "Welt",
       rarity: 5,
       path: "Nihility",
@@ -75,7 +75,7 @@ export const gameData = {
       unreleased: false,
     },
     Kafka: {
-      id: "1005",
+      id: 1005,
       name: "Kafka",
       rarity: 5,
       path: "Nihility",
@@ -92,7 +92,7 @@ export const gameData = {
       unreleased: false,
     },
     "Silver Wolf": {
-      id: "1006",
+      id: 1006,
       name: "Silver Wolf",
       rarity: 5,
       path: "Nihility",
@@ -109,7 +109,7 @@ export const gameData = {
       unreleased: false,
     },
     Arlan: {
-      id: "1008",
+      id: 1008,
       name: "Arlan",
       rarity: 4,
       path: "Destruction",
@@ -126,7 +126,7 @@ export const gameData = {
       unreleased: false,
     },
     Asta: {
-      id: "1009",
+      id: 1009,
       name: "Asta",
       rarity: 4,
       path: "Harmony",
@@ -143,7 +143,7 @@ export const gameData = {
       unreleased: false,
     },
     Herta: {
-      id: "1013",
+      id: 1013,
       name: "Herta",
       rarity: 4,
       path: "Erudition",
@@ -160,7 +160,7 @@ export const gameData = {
       unreleased: false,
     },
     Bronya: {
-      id: "1101",
+      id: 1101,
       name: "Bronya",
       rarity: 5,
       path: "Harmony",
@@ -177,7 +177,7 @@ export const gameData = {
       unreleased: false,
     },
     Seele: {
-      id: "1102",
+      id: 1102,
       name: "Seele",
       rarity: 5,
       path: "Hunt",
@@ -194,7 +194,7 @@ export const gameData = {
       unreleased: false,
     },
     Serval: {
-      id: "1103",
+      id: 1103,
       name: "Serval",
       rarity: 4,
       path: "Erudition",
@@ -211,7 +211,7 @@ export const gameData = {
       unreleased: false,
     },
     Gepard: {
-      id: "1104",
+      id: 1104,
       name: "Gepard",
       rarity: 5,
       path: "Preservation",
@@ -228,7 +228,7 @@ export const gameData = {
       unreleased: false,
     },
     Natasha: {
-      id: "1105",
+      id: 1105,
       name: "Natasha",
       rarity: 4,
       path: "Abundance",
@@ -245,7 +245,7 @@ export const gameData = {
       unreleased: false,
     },
     Pela: {
-      id: "1106",
+      id: 1106,
       name: "Pela",
       rarity: 4,
       path: "Nihility",
@@ -262,7 +262,7 @@ export const gameData = {
       unreleased: false,
     },
     Clara: {
-      id: "1107",
+      id: 1107,
       name: "Clara",
       rarity: 5,
       path: "Destruction",
@@ -279,7 +279,7 @@ export const gameData = {
       unreleased: false,
     },
     Sampo: {
-      id: "1108",
+      id: 1108,
       name: "Sampo",
       rarity: 4,
       path: "Nihility",
@@ -296,7 +296,7 @@ export const gameData = {
       unreleased: false,
     },
     Hook: {
-      id: "1109",
+      id: 1109,
       name: "Hook",
       rarity: 4,
       path: "Destruction",
@@ -313,7 +313,7 @@ export const gameData = {
       unreleased: false,
     },
     Lynx: {
-      id: "1110",
+      id: 1110,
       name: "Lynx",
       rarity: 4,
       path: "Abundance",
@@ -330,7 +330,7 @@ export const gameData = {
       unreleased: false,
     },
     Luka: {
-      id: "1111",
+      id: 1111,
       name: "Luka",
       rarity: 4,
       path: "Nihility",
@@ -347,7 +347,7 @@ export const gameData = {
       unreleased: false,
     },
     "Topaz & Numby": {
-      id: "1112",
+      id: 1112,
       name: "Topaz & Numby",
       rarity: 5,
       path: "Hunt",
@@ -364,7 +364,7 @@ export const gameData = {
       unreleased: false,
     },
     Qingque: {
-      id: "1201",
+      id: 1201,
       name: "Qingque",
       rarity: 4,
       path: "Erudition",
@@ -381,7 +381,7 @@ export const gameData = {
       unreleased: false,
     },
     Tingyun: {
-      id: "1202",
+      id: 1202,
       name: "Tingyun",
       rarity: 4,
       path: "Harmony",
@@ -398,7 +398,7 @@ export const gameData = {
       unreleased: false,
     },
     Luocha: {
-      id: "1203",
+      id: 1203,
       name: "Luocha",
       rarity: 5,
       path: "Abundance",
@@ -415,7 +415,7 @@ export const gameData = {
       unreleased: false,
     },
     "Jing Yuan": {
-      id: "1204",
+      id: 1204,
       name: "Jing Yuan",
       rarity: 5,
       path: "Erudition",
@@ -432,7 +432,7 @@ export const gameData = {
       unreleased: false,
     },
     Blade: {
-      id: "1205",
+      id: 1205,
       name: "Blade",
       rarity: 5,
       path: "Destruction",
@@ -449,7 +449,7 @@ export const gameData = {
       unreleased: false,
     },
     Sushang: {
-      id: "1206",
+      id: 1206,
       name: "Sushang",
       rarity: 4,
       path: "Hunt",
@@ -466,7 +466,7 @@ export const gameData = {
       unreleased: false,
     },
     Yukong: {
-      id: "1207",
+      id: 1207,
       name: "Yukong",
       rarity: 4,
       path: "Harmony",
@@ -483,7 +483,7 @@ export const gameData = {
       unreleased: false,
     },
     "Fu Xuan": {
-      id: "1208",
+      id: 1208,
       name: "Fu Xuan",
       rarity: 5,
       path: "Preservation",
@@ -500,7 +500,7 @@ export const gameData = {
       unreleased: false,
     },
     Yanqing: {
-      id: "1209",
+      id: 1209,
       name: "Yanqing",
       rarity: 5,
       path: "Hunt",
@@ -517,7 +517,7 @@ export const gameData = {
       unreleased: false,
     },
     Guinaifen: {
-      id: "1210",
+      id: 1210,
       name: "Guinaifen",
       rarity: 4,
       path: "Nihility",
@@ -534,7 +534,7 @@ export const gameData = {
       unreleased: false,
     },
     Bailu: {
-      id: "1211",
+      id: 1211,
       name: "Bailu",
       rarity: 5,
       path: "Abundance",
@@ -551,7 +551,7 @@ export const gameData = {
       unreleased: false,
     },
     Jingliu: {
-      id: "1212",
+      id: 1212,
       name: "Jingliu",
       rarity: 5,
       path: "Destruction",
@@ -568,7 +568,7 @@ export const gameData = {
       unreleased: false,
     },
     "Dan Heng • Imbibitor Lunae": {
-      id: "1213",
+      id: 1213,
       name: "Dan Heng • Imbibitor Lunae",
       rarity: 5,
       path: "Destruction",
@@ -585,7 +585,7 @@ export const gameData = {
       unreleased: false,
     },
     Xueyi: {
-      id: "1214",
+      id: 1214,
       name: "Xueyi",
       rarity: 4,
       path: "Destruction",
@@ -602,7 +602,7 @@ export const gameData = {
       unreleased: false,
     },
     Hanya: {
-      id: "1215",
+      id: 1215,
       name: "Hanya",
       rarity: 4,
       path: "Harmony",
@@ -619,7 +619,7 @@ export const gameData = {
       unreleased: false,
     },
     Huohuo: {
-      id: "1217",
+      id: 1217,
       name: "Huohuo",
       rarity: 5,
       path: "Abundance",
@@ -636,7 +636,7 @@ export const gameData = {
       unreleased: false,
     },
     Jiaoqiu: {
-      id: "1218",
+      id: 1218,
       name: "Jiaoqiu",
       rarity: 5,
       path: "Nihility",
@@ -653,7 +653,7 @@ export const gameData = {
       unreleased: false,
     },
     Feixiao: {
-      id: "1220",
+      id: 1220,
       name: "Feixiao",
       rarity: 5,
       path: "Hunt",
@@ -670,7 +670,7 @@ export const gameData = {
       unreleased: false,
     },
     Yunli: {
-      id: "1221",
+      id: 1221,
       name: "Yunli",
       rarity: 5,
       path: "Destruction",
@@ -687,7 +687,7 @@ export const gameData = {
       unreleased: false,
     },
     Lingsha: {
-      id: "1222",
+      id: 1222,
       name: "Lingsha",
       rarity: 5,
       path: "Abundance",
@@ -704,7 +704,7 @@ export const gameData = {
       unreleased: false,
     },
     Moze: {
-      id: "1223",
+      id: 1223,
       name: "Moze",
       rarity: 4,
       path: "Hunt",
@@ -721,7 +721,7 @@ export const gameData = {
       unreleased: false,
     },
     "Hunt March 7th": {
-      id: "1224",
+      id: 1224,
       name: "March 7th",
       rarity: 4,
       path: "Hunt",
@@ -738,7 +738,7 @@ export const gameData = {
       unreleased: false,
     },
     Fugue: {
-      id: "1225",
+      id: 1225,
       name: "Fugue",
       rarity: 5,
       path: "Nihility",
@@ -755,7 +755,7 @@ export const gameData = {
       unreleased: true,
     },
     Gallagher: {
-      id: "1301",
+      id: 1301,
       name: "Gallagher",
       rarity: 4,
       path: "Abundance",
@@ -772,7 +772,7 @@ export const gameData = {
       unreleased: false,
     },
     Argenti: {
-      id: "1302",
+      id: 1302,
       name: "Argenti",
       rarity: 5,
       path: "Erudition",
@@ -789,7 +789,7 @@ export const gameData = {
       unreleased: false,
     },
     "Ruan Mei": {
-      id: "1303",
+      id: 1303,
       name: "Ruan Mei",
       rarity: 5,
       path: "Harmony",
@@ -806,7 +806,7 @@ export const gameData = {
       unreleased: false,
     },
     Aventurine: {
-      id: "1304",
+      id: 1304,
       name: "Aventurine",
       rarity: 5,
       path: "Preservation",
@@ -823,7 +823,7 @@ export const gameData = {
       unreleased: false,
     },
     "Dr. Ratio": {
-      id: "1305",
+      id: 1305,
       name: "Dr. Ratio",
       rarity: 5,
       path: "Hunt",
@@ -840,7 +840,7 @@ export const gameData = {
       unreleased: false,
     },
     Sparkle: {
-      id: "1306",
+      id: 1306,
       name: "Sparkle",
       rarity: 5,
       path: "Harmony",
@@ -857,7 +857,7 @@ export const gameData = {
       unreleased: false,
     },
     "Black Swan": {
-      id: "1307",
+      id: 1307,
       name: "Black Swan",
       rarity: 5,
       path: "Nihility",
@@ -874,7 +874,7 @@ export const gameData = {
       unreleased: false,
     },
     Acheron: {
-      id: "1308",
+      id: 1308,
       name: "Acheron",
       rarity: 5,
       path: "Nihility",
@@ -891,7 +891,7 @@ export const gameData = {
       unreleased: false,
     },
     Robin: {
-      id: "1309",
+      id: 1309,
       name: "Robin",
       rarity: 5,
       path: "Harmony",
@@ -908,7 +908,7 @@ export const gameData = {
       unreleased: false,
     },
     Firefly: {
-      id: "1310",
+      id: 1310,
       name: "Firefly",
       rarity: 5,
       path: "Destruction",
@@ -925,7 +925,7 @@ export const gameData = {
       unreleased: false,
     },
     Misha: {
-      id: "1312",
+      id: 1312,
       name: "Misha",
       rarity: 4,
       path: "Destruction",
@@ -942,7 +942,7 @@ export const gameData = {
       unreleased: false,
     },
     Sunday: {
-      id: "1313",
+      id: 1313,
       name: "Sunday",
       rarity: 5,
       path: "Harmony",
@@ -959,7 +959,7 @@ export const gameData = {
       unreleased: true,
     },
     Jade: {
-      id: "1314",
+      id: 1314,
       name: "Jade",
       rarity: 5,
       path: "Erudition",
@@ -976,7 +976,7 @@ export const gameData = {
       unreleased: false,
     },
     Boothill: {
-      id: "1315",
+      id: 1315,
       name: "Boothill",
       rarity: 5,
       path: "Hunt",
@@ -993,7 +993,7 @@ export const gameData = {
       unreleased: false,
     },
     Rappa: {
-      id: "1317",
+      id: 1317,
       name: "Rappa",
       rarity: 5,
       path: "Erudition",
@@ -1010,7 +1010,7 @@ export const gameData = {
       unreleased: false,
     },
     "Destruction Trailblazer 1": {
-      id: "8001",
+      id: 8001,
       name: "Trailblazer",
       rarity: 5,
       path: "Destruction",
@@ -1027,7 +1027,7 @@ export const gameData = {
       unreleased: false,
     },
     "Destruction Trailblazer 2": {
-      id: "8002",
+      id: 8002,
       name: "Trailblazer",
       rarity: 5,
       path: "Destruction",
@@ -1044,7 +1044,7 @@ export const gameData = {
       unreleased: false,
     },
     "Preservation Trailblazer 1": {
-      id: "8003",
+      id: 8003,
       name: "Trailblazer",
       rarity: 5,
       path: "Preservation",
@@ -1061,7 +1061,7 @@ export const gameData = {
       unreleased: false,
     },
     "Preservation Trailblazer 2": {
-      id: "8004",
+      id: 8004,
       name: "Trailblazer",
       rarity: 5,
       path: "Preservation",
@@ -1078,7 +1078,7 @@ export const gameData = {
       unreleased: false,
     },
     "Harmony Trailblazer 1": {
-      id: "8005",
+      id: 8005,
       name: "Trailblazer",
       rarity: 5,
       path: "Harmony",
@@ -1095,7 +1095,7 @@ export const gameData = {
       unreleased: false,
     },
     "Harmony Trailblazer 2": {
-      id: "8006",
+      id: 8006,
       name: "Trailblazer",
       rarity: 5,
       path: "Harmony",
