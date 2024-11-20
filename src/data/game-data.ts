@@ -3,6 +3,68 @@
 export type CharacterName = keyof typeof gameData.characters;
 export type RelicSetName = keyof typeof gameData.relics;
 export type RelicSet = (typeof gameData.relics)[RelicSetName];
+export type CavernName = keyof typeof caverns;
+type Cavern = {
+  name: string;
+  location: string;
+  drops: [RelicSetName, RelicSetName];
+};
+
+export const caverns: Cavern[] = [
+  {
+    name: "Path of Gelid Wind",
+    location: "Storage Zone, Herta Space Station",
+    drops: ["Hunter of Glacial Forest", "Eagle of Twilight Line"],
+  },
+  {
+    name: "Path of Jabbing Punch",
+    location: "Silvermane Guard Restricted Zone, Jarilo-VI",
+    drops: ["Champion of Streetwise Boxing", "Thief of Shooting Meteor"],
+  },
+  {
+    name: "Path of Drifting",
+    location: "Corridor of Fading Echoes, Jarilo-VI",
+    drops: ["Passerby of Wandering Cloud", "Musketeer of Wild Wheat"],
+  },
+  {
+    name: "Path of Providence",
+    location: "Everwinter Hill, Jarilo-VI",
+    drops: ["Guard of Wuthering Snow", "Genius of Brilliant Stars"],
+  },
+  {
+    name: "Path of Holy Hymn",
+    location: "Cloudford, The Xianzhou Luofu",
+    drops: ["Knight of Purity Palace", "Band of Sizzling Thunder"],
+  },
+  {
+    name: "Path of Conflagration",
+    location: "Stargazer Navalia, The Xianzhou Luofu",
+    drops: ["Firesmith of Lava-Forging", "Wastelander of Banditry Desert"],
+  },
+  {
+    name: "Path of Elixir Seekers",
+    location: "Alchemy Commission, The Xianzhou Luofu",
+    drops: ["Longevous Disciple", "Messenger Traversing Hackerspace"],
+  },
+  {
+    name: "Path of Darkness",
+    location: "Fyxestroll Garden, The Xianzhou Luofu",
+    drops: ["The Ashblazing Grand Duke", "Prisoner in Deep Confinement"],
+  },
+  {
+    name: "Path of Dreamdive",
+    location: "The Reverie (Dreamscape), Penacony",
+    drops: [
+      "Pioneer Diver of Dead Waters",
+      "Watchmaker, Master of Dream Machinations",
+    ],
+  },
+  {
+    name: "Path of Cavalier",
+    location: "Penacony Grand Theater, Penacony",
+    drops: ["Iron Cavalry Against the Scourge", "The Wind-Soaring Valorous"],
+  },
+];
 
 export const gameData = {
   characters: {

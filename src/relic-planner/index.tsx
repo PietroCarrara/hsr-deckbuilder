@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { HoyoCharacterInfo, PlayerInfo, playerInfoSchema } from "../hoyoverse";
+import {
+  PlayerCharacterInfo,
+  PlayerInfo,
+  playerInfoSchema,
+} from "../hoyoverse";
 import { usePersistedState } from "../persistance";
 import { CharacterName, gameData, RelicSet } from "../data/game-data";
 import { optimalRelicSets } from "../data/prydwen";
 
 type CharacterAndRelicInformation = {
-  character: HoyoCharacterInfo;
+  character: PlayerCharacterInfo;
   optimalRelicSet: RelicSet;
 };
 
@@ -92,7 +96,8 @@ function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
           <ul className="ml-4 list-disc">
             {character.relics.map((relic) => {
               const setId = relic.id.toString().substring(1, 4);
-              const keep = optimalRelicSet.id === setId;
+              // TODO: Take into account main stat
+              const keep = relic.rarity === 5 && optimalRelicSet.id === setId;
               const style = keep ? keepStyle : changeStyle;
 
               return (

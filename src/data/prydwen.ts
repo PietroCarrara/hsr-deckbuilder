@@ -1,5 +1,13 @@
+import { MainStat } from "../hoyoverse";
 import { todo } from "../todo";
 import { CharacterName, gameData, RelicSet } from "./game-data";
+
+export type OptimalMainStats = {
+  body: MainStat;
+  feet: MainStat;
+  planarSphere: MainStat;
+  linkRope: MainStat;
+};
 
 export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   "Topaz & Numby": gameData.relics["The Ashblazing Grand Duke"],
@@ -30,6 +38,110 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   Hook: todo(),
   Lynx: todo(),
   Luka: todo(),
+  Qingque: todo(),
+  Tingyun: todo(),
+  Luocha: todo(),
+  "Jing Yuan": todo(),
+  Blade: todo(),
+  Yukong: todo(),
+  "Fu Xuan": todo(),
+  Yanqing: todo(),
+  Guinaifen: todo(),
+  Bailu: todo(),
+  Jingliu: todo(),
+  "Dan Heng • Imbibitor Lunae": todo(),
+  Xueyi: todo(),
+  Hanya: todo(),
+  Huohuo: todo(),
+  Jiaoqiu: todo(),
+  Feixiao: todo(),
+  Yunli: todo(),
+  Lingsha: todo(),
+  Fugue: todo(),
+  Argenti: todo(),
+  "Ruan Mei": todo(),
+  "Dr. Ratio": todo(),
+  "Black Swan": todo(),
+  Acheron: todo(),
+  Robin: todo(),
+  Firefly: todo(),
+  Misha: todo(),
+  Sunday: todo(),
+  Jade: todo(),
+  Boothill: todo(),
+  Rappa: todo(),
+  "Preservation March 7th": todo(),
+  "Hunt March 7th": todo(),
+  "Destruction Trailblazer 1": todo(),
+  "Destruction Trailblazer 2": todo(),
+  "Preservation Trailblazer 1": todo(),
+  "Preservation Trailblazer 2": todo(),
+  "Harmony Trailblazer 1": todo(),
+  "Harmony Trailblazer 2": todo(),
+};
+
+export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
+  Aventurine: {
+    body: "DEF%",
+    feet: "Speed",
+    planarSphere: "DEF%",
+    linkRope: "DEF%",
+  },
+  Clara: {
+    body: "Crit Rate",
+    feet: "ATK%",
+    planarSphere: "Physical Damage Boost",
+    linkRope: "ATK%",
+  },
+  Gallagher: {
+    body: "Outgoing Healing Boost",
+    feet: "Speed",
+    planarSphere: "HP%",
+    linkRope: "Energy Regeneration Rate",
+  },
+  Moze: {
+    body: "Crit Rate",
+    feet: "ATK%",
+    planarSphere: "Lightning Damage Boost",
+    linkRope: "ATK%",
+  },
+  Sparkle: {
+    body: "Crit Damage",
+    feet: "Speed",
+    planarSphere: "HP%",
+    linkRope: "Energy Regeneration Rate",
+  },
+  Sushang: {
+    body: "Crit Rate",
+    feet: "Speed",
+    planarSphere: "Physical Damage Boost",
+    linkRope: "ATK%",
+  },
+  Welt: {
+    body: "Crit Rate",
+    feet: "Speed",
+    planarSphere: "Imaginary Damage Boost",
+    linkRope: "ATK%",
+  },
+
+  "Dan Heng": todo(),
+  Himeko: todo(),
+  Kafka: todo(),
+  "Silver Wolf": todo(),
+  Arlan: todo(),
+  Asta: todo(),
+  Herta: todo(),
+  Bronya: todo(),
+  Seele: todo(),
+  Serval: todo(),
+  Gepard: todo(),
+  Natasha: todo(),
+  Pela: todo(),
+  Sampo: todo(),
+  Hook: todo(),
+  Lynx: todo(),
+  Luka: todo(),
+  "Topaz & Numby": todo(),
   Qingque: todo(),
   Tingyun: todo(),
   Luocha: todo(),
