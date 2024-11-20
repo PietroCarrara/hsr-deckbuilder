@@ -14,21 +14,24 @@ export type DiffInput = Array<{
   // TODO: maybe targetRelicSubstats?
 }>;
 
-export type DiffOutput = DiffInput &
-  Array<{
-    missingMainStats: {
-      body: MainStat | null;
-      feet: MainStat | null;
-      planarSphere: MainStat | null;
-      linkRope: MainStat | null;
-    };
-    missingSet: {
-      body: RelicSet | null;
-      feet: RelicSet | null;
-      planarSphere: RelicSet | null;
-      linkRope: RelicSet | null;
-    };
-  }>;
+export type DiffOutput = Array<{
+  currentCharacterState: PlayerCharacterInfo;
+  targetRelicSet: RelicSet;
+  targetRelicsMainStats: OptimalMainStats;
+
+  missingMainStats: {
+    body: MainStat | null;
+    feet: MainStat | null;
+    planarSphere: MainStat | null;
+    linkRope: MainStat | null;
+  };
+  missingSet: {
+    body: RelicSet | null;
+    feet: RelicSet | null;
+    planarSphere: RelicSet | null;
+    linkRope: RelicSet | null;
+  };
+}>;
 
 // TODO: Actually plan where to farm and what main stats to look out for
 export function buildPlan(input: DiffInput): DiffOutput {

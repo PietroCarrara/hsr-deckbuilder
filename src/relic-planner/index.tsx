@@ -6,11 +6,17 @@ import {
 } from "../hoyoverse";
 import { usePersistedState } from "../persistance";
 import { CharacterName, gameData, RelicSet } from "../data/game-data";
-import { optimalRelicSets } from "../data/prydwen";
+import {
+  OptimalMainStats,
+  optimalRelicMainStats,
+  optimalRelicSets,
+} from "../data/prydwen";
+import { buildPlan, DiffOutput } from "./lib/planner";
 
 type CharacterAndRelicInformation = {
   character: PlayerCharacterInfo;
   optimalRelicSet: RelicSet;
+  optimalRelicMainStats: OptimalMainStats;
 };
 
 export function RelicPlanner() {
@@ -47,6 +53,7 @@ export function RelicPlanner() {
       return {
         character,
         optimalRelicSet: optimalRelicSets[name],
+        optimalRelicMainStats: optimalRelicMainStats[name],
       };
     })
     .filter((x) => x !== undefined);
@@ -54,62 +61,75 @@ export function RelicPlanner() {
   return (
     <div className="grid grid-cols-2 gap-4">
       <div>
-        <span>Your current account:</span>
-        <AccountState info={selectedCharacters} />
-      </div>
-      <div>
-        <span>What you should change:</span>
+        <span>
+          What you need to <span className="text-green-700">farm</span>:
+        </span>
         <RequiredChanges info={selectedCharacters} />
       </div>
     </div>
   );
 }
 
-function AccountState({ info }: { info: CharacterAndRelicInformation[] }) {
+function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
+  const plan = buildPlan(
+    info.map((i) => ({
+      currentCharacterState: i.character,
+      targetRelicSet: i.optimalRelicSet,
+      targetRelicsMainStats: i.optimalRelicMainStats,
+    }))
+  );
+
   return (
     <ul className="list-disc">
-      {info.map(({ character }) => (
-        <li key={character.id}>
-          {character.name}
-          <ul className="ml-4 list-disc">
-            {character.relics.map((relic) => (
-              <li key={relic.id}>
-                {relic.name} (+{relic.level})
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
+      {plan.map((x) => {
+        return (
+          <li key={x.currentCharacterState.id}>
+            {x.currentCharacterState.name}
+            <ul className="ml-4 list-disc">
+              <RelicDiffDisplay
+                slot="body"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetRelicSet={x.targetRelicSet}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+              <RelicDiffDisplay
+                slot="feet"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetRelicSet={x.targetRelicSet}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+            </ul>
+          </li>
+        );
+      })}
     </ul>
   );
 }
 
-function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
-  const changeStyle = "text-rose-700";
-  const keepStyle = "text-green-700";
+function RelicDiffDisplay({
+  missingMainStats,
+  missingSet,
+  targetRelicSet,
+  targetRelicsMainStats,
+  slot,
+}: Omit<DiffOutput[number], "currentCharacterState"> & {
+  slot: "body" | "feet";
+}) {
+  const set = (missingSet[slot] && (
+    <span className="text-green-700">{missingSet[slot].name}</span>
+  )) || <span>{targetRelicSet.name}</span>;
+  const mainStats = (missingMainStats[slot] && (
+    <span className="text-green-700">{missingMainStats[slot]}</span>
+  )) || <span>{targetRelicsMainStats[slot]}</span>;
 
   return (
-    <ul className="list-disc">
-      {info.map(({ character, optimalRelicSet }) => (
-        <li key={character.id}>
-          {character.name}
-          <ul className="ml-4 list-disc">
-            {character.relics.map((relic) => {
-              const setId = relic.id.toString().substring(1, 4);
-              // TODO: Take into account main stat
-              const keep = relic.rarity === 5 && optimalRelicSet.id === setId;
-              const style = keep ? keepStyle : changeStyle;
-
-              return (
-                <li className={style} key={relic.id}>
-                  {relic.name} (+{relic.level})
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-      ))}
-    </ul>
+    (missingMainStats.body || missingSet.body) && (
+      <li>
+        {slot}: {set} ({mainStats})
+      </li>
+    )
   );
 }
 

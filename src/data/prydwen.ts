@@ -11,11 +11,13 @@ export type OptimalMainStats = {
 
 export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   "Topaz & Numby": gameData.relics["The Ashblazing Grand Duke"],
+  Acheron: gameData.relics["Pioneer Diver of Dead Waters"],
   Aventurine: gameData.relics["Knight of Purity Palace"],
   Clara: gameData.relics["Champion of Streetwise Boxing"],
   // TODO Gallagher not only has more than one optimal set, he has mixed sets (two pieces from each)
   Gallagher: gameData.relics["Messenger Traversing Hackerspace"],
   Moze: gameData.relics["The Ashblazing Grand Duke"],
+  Pela: gameData.relics["Eagle of Twilight Line"],
   Sparkle: gameData.relics["Sacerdos' Relived Ordeal"],
   Sushang: gameData.relics["Champion of Streetwise Boxing"],
   // TODO: Welt and some other characters have more than one optimal sets on prydwen. How do we model this?
@@ -33,7 +35,6 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   Serval: todo(),
   Gepard: todo(),
   Natasha: todo(),
-  Pela: todo(),
   Sampo: todo(),
   Hook: todo(),
   Lynx: todo(),
@@ -62,7 +63,6 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   "Ruan Mei": todo(),
   "Dr. Ratio": todo(),
   "Black Swan": todo(),
-  Acheron: todo(),
   Robin: todo(),
   Firefly: todo(),
   Misha: todo(),
@@ -81,6 +81,12 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
 };
 
 export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
+  Acheron: {
+    body: "Crit Rate",
+    feet: "ATK%",
+    planarSphere: "ATK%",
+    linkRope: "ATK%",
+  },
   Aventurine: {
     body: "DEF%",
     feet: "Speed",
@@ -105,6 +111,12 @@ export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
     planarSphere: "Lightning Damage Boost",
     linkRope: "ATK%",
   },
+  Pela: {
+    body: "Effect Hit Rate",
+    feet: "Speed",
+    planarSphere: "HP%",
+    linkRope: "Energy Regeneration Rate",
+  },
   Sparkle: {
     body: "Crit Damage",
     feet: "Speed",
@@ -123,6 +135,12 @@ export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
     planarSphere: "Imaginary Damage Boost",
     linkRope: "ATK%",
   },
+  "Topaz & Numby": {
+    body: "Crit Rate",
+    feet: "Speed",
+    planarSphere: "Fire Damage Boost",
+    linkRope: "ATK%",
+  },
 
   "Dan Heng": todo(),
   Himeko: todo(),
@@ -136,12 +154,10 @@ export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
   Serval: todo(),
   Gepard: todo(),
   Natasha: todo(),
-  Pela: todo(),
   Sampo: todo(),
   Hook: todo(),
   Lynx: todo(),
   Luka: todo(),
-  "Topaz & Numby": todo(),
   Qingque: todo(),
   Tingyun: todo(),
   Luocha: todo(),
@@ -166,7 +182,6 @@ export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
   "Ruan Mei": todo(),
   "Dr. Ratio": todo(),
   "Black Swan": todo(),
-  Acheron: todo(),
   Robin: todo(),
   Firefly: todo(),
   Misha: todo(),
