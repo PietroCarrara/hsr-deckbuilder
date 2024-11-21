@@ -9,14 +9,14 @@ import {
 
 export type DiffInput = Array<{
   currentCharacterState: PlayerCharacterInfo;
-  targetRelicSet: RelicSet;
+  targetSets: { relics: RelicSet; ornaments: RelicSet };
   targetRelicsMainStats: OptimalMainStats;
   // TODO: maybe targetRelicSubstats?
 }>;
 
 export type DiffOutput = Array<{
   currentCharacterState: PlayerCharacterInfo;
-  targetRelicSet: RelicSet;
+  targetSets: { relics: RelicSet; ornaments: RelicSet };
   targetRelicsMainStats: OptimalMainStats;
 
   missingMainStats: {
@@ -40,7 +40,7 @@ export function buildPlan(input: DiffInput): DiffOutput {
   return diffCurrentAndTargetState(input);
 }
 
-function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
+export function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
   const withMissingMainStats = input.map(
     ({ targetRelicsMainStats, currentCharacterState, ...rest }) => {
       const bodyRelic = currentCharacterState.relics.find(
@@ -79,7 +79,7 @@ function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
   );
 
   const withMissingSets = withMissingMainStats.map(
-    ({ targetRelicSet, currentCharacterState, ...rest }) => {
+    ({ targetSets, currentCharacterState, ...rest }) => {
       const headRelicId = currentCharacterState.relics.find(
         (r) => relicPosToSlot[r.pos] === "head"
       )?.id;
@@ -92,36 +92,49 @@ function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
       const feetRelicId = currentCharacterState.relics.find(
         (r) => relicPosToSlot[r.pos] === "feet"
       )?.id;
+      const sphereRelicId = currentCharacterState.ornaments.find(
+        (o) => relicPosToSlot[o.pos] === "planarSphere"
+      )?.id;
+      const ropeRelicId = currentCharacterState.ornaments.find(
+        (o) => relicPosToSlot[o.pos] === "linkRope"
+      )?.id;
 
       const headRelicSetId = headRelicId?.toString().substring(1, 4);
       const handsRelicSetId = handsRelicId?.toString().substring(1, 4);
       const bodyRelicSetId = bodyRelicId?.toString().substring(1, 4);
       const feetRelicSetId = feetRelicId?.toString().substring(1, 4);
+      const sphereRelicSetId = sphereRelicId?.toString().substring(1, 4);
+      const ropeRelicSetId = ropeRelicId?.toString().substring(1, 4);
 
       return {
         currentCharacterState,
-        targetRelicSet,
+        targetSets,
         missingSet: {
           head:
-            headRelicSetId && headRelicSetId === targetRelicSet.id
+            headRelicSetId && headRelicSetId === targetSets.relics.id
               ? null
-              : targetRelicSet,
+              : targetSets.relics,
           hands:
-            handsRelicSetId && handsRelicSetId === targetRelicSet.id
+            handsRelicSetId && handsRelicSetId === targetSets.relics.id
               ? null
-              : targetRelicSet,
+              : targetSets.relics,
           body:
-            bodyRelicSetId && bodyRelicSetId === targetRelicSet.id
+            bodyRelicSetId && bodyRelicSetId === targetSets.relics.id
               ? null
-              : targetRelicSet,
+              : targetSets.relics,
           feet:
-            feetRelicSetId && feetRelicSetId === targetRelicSet.id
+            feetRelicSetId && feetRelicSetId === targetSets.relics.id
               ? null
-              : targetRelicSet,
+              : targetSets.relics,
 
-          // TODO: Check ornaments
-          planarSphere: null,
-          linkRope: null,
+          planarSphere:
+            sphereRelicSetId && sphereRelicSetId === targetSets.ornaments.id
+              ? null
+              : targetSets.ornaments,
+          linkRope:
+            ropeRelicSetId && ropeRelicSetId === targetSets.ornaments.id
+              ? null
+              : targetSets.ornaments,
         },
         ...rest,
       };

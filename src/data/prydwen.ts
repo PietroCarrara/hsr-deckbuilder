@@ -9,19 +9,52 @@ export type OptimalMainStats = {
   linkRope: MainStat;
 };
 
-export const optimalRelicSets: Record<CharacterName, RelicSet> = {
-  "Topaz & Numby": gameData.relics["The Ashblazing Grand Duke"],
-  Acheron: gameData.relics["Pioneer Diver of Dead Waters"],
-  Aventurine: gameData.relics["Knight of Purity Palace"],
-  Clara: gameData.relics["Champion of Streetwise Boxing"],
+export const optimalSets: Record<
+  CharacterName,
+  { relics: RelicSet; ornaments: RelicSet }
+> = {
+  "Topaz & Numby": {
+    relics: gameData.relics["The Ashblazing Grand Duke"],
+    ornaments: gameData.relics["Duran, Dynasty of Running Wolves"],
+  },
+  Acheron: {
+    relics: gameData.relics["Pioneer Diver of Dead Waters"],
+    ornaments: gameData.relics["Izumo Gensei and Takama Divine Realm"],
+  },
+  Aventurine: {
+    relics: gameData.relics["Knight of Purity Palace"],
+    ornaments: gameData.relics["Broken Keel"],
+  },
+  Clara: {
+    relics: gameData.relics["Champion of Streetwise Boxing"],
+    ornaments: gameData.relics["Duran, Dynasty of Running Wolves"],
+  },
   // TODO Gallagher not only has more than one optimal set, he has mixed sets (two pieces from each)
-  Gallagher: gameData.relics["Messenger Traversing Hackerspace"],
-  Moze: gameData.relics["The Ashblazing Grand Duke"],
-  Pela: gameData.relics["Eagle of Twilight Line"],
-  Sparkle: gameData.relics["Sacerdos' Relived Ordeal"],
-  Sushang: gameData.relics["Champion of Streetwise Boxing"],
+  Gallagher: {
+    relics: gameData.relics["Messenger Traversing Hackerspace"],
+    ornaments: gameData.relics["Messenger Traversing Hackerspace"],
+  },
+  Moze: {
+    relics: gameData.relics["Pioneer Diver of Dead Waters"],
+    ornaments: gameData.relics["Duran, Dynasty of Running Wolves"],
+  },
+  Pela: {
+    relics: gameData.relics["Eagle of Twilight Line"],
+    ornaments: gameData.relics["Broken Keel"],
+  },
+  Sparkle: {
+    relics: gameData.relics["Sacerdos' Relived Ordeal"],
+    ornaments: gameData.relics["Sacerdos' Relived Ordeal"],
+  },
+  Sushang: {
+    relics: gameData.relics["Champion of Streetwise Boxing"],
+    ornaments: gameData.relics["Rutilant Arena"],
+  },
   // TODO: Welt and some other characters have more than one optimal sets on prydwen. How do we model this?
-  Welt: gameData.relics["Wastelander of Banditry Desert"],
+  Welt: {
+    relics: gameData.relics["Wastelander of Banditry Desert"],
+    ornaments: gameData.relics["Pan-Cosmic Commercial Enterprise"],
+  },
 
   "Dan Heng": todo(),
   Himeko: todo(),
@@ -80,7 +113,7 @@ export const optimalRelicSets: Record<CharacterName, RelicSet> = {
   "Harmony Trailblazer 2": todo(),
 };
 
-export const optimalRelicMainStats: Record<CharacterName, OptimalMainStats> = {
+export const optimalMainStats: Record<CharacterName, OptimalMainStats> = {
   Acheron: {
     body: "Crit Rate",
     feet: "ATK%",

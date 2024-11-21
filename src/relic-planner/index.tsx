@@ -8,15 +8,15 @@ import { usePersistedState } from "../persistance";
 import { CharacterName, gameData, RelicSet } from "../data/game-data";
 import {
   OptimalMainStats,
-  optimalRelicMainStats,
-  optimalRelicSets,
+  optimalMainStats,
+  optimalSets,
 } from "../data/prydwen";
-import { buildPlan, DiffOutput } from "./lib/planner";
+import { diffCurrentAndTargetState, DiffOutput } from "./lib/planner";
 
 type CharacterAndRelicInformation = {
   character: PlayerCharacterInfo;
-  optimalRelicSet: RelicSet;
-  optimalRelicMainStats: OptimalMainStats;
+  optimalSets: { relics: RelicSet; ornaments: RelicSet };
+  optimalMainStats: OptimalMainStats;
 };
 
 export function RelicPlanner() {
@@ -52,8 +52,8 @@ export function RelicPlanner() {
 
       return {
         character,
-        optimalRelicSet: optimalRelicSets[name],
-        optimalRelicMainStats: optimalRelicMainStats[name],
+        optimalSets: optimalSets[name],
+        optimalMainStats: optimalMainStats[name],
       };
     })
     .filter((x) => x !== undefined);
@@ -71,17 +71,17 @@ export function RelicPlanner() {
 }
 
 function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
-  const plan = buildPlan(
+  const diff = diffCurrentAndTargetState(
     info.map((i) => ({
       currentCharacterState: i.character,
-      targetRelicSet: i.optimalRelicSet,
-      targetRelicsMainStats: i.optimalRelicMainStats,
+      targetSets: i.optimalSets,
+      targetRelicsMainStats: i.optimalMainStats,
     }))
   );
 
   return (
     <ul className="list-disc">
-      {plan.map((x) => {
+      {diff.map((x) => {
         return (
           <li key={x.currentCharacterState.id}>
             {x.currentCharacterState.name}
@@ -90,28 +90,42 @@ function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
                 slot="head"
                 missingMainStats={x.missingMainStats}
                 missingSet={x.missingSet}
-                targetRelicSet={x.targetRelicSet}
+                targetSets={x.targetSets}
                 targetRelicsMainStats={x.targetRelicsMainStats}
               />
               <RelicDiffDisplay
                 slot="hands"
                 missingMainStats={x.missingMainStats}
                 missingSet={x.missingSet}
-                targetRelicSet={x.targetRelicSet}
+                targetSets={x.targetSets}
                 targetRelicsMainStats={x.targetRelicsMainStats}
               />
               <RelicDiffDisplay
                 slot="body"
                 missingMainStats={x.missingMainStats}
                 missingSet={x.missingSet}
-                targetRelicSet={x.targetRelicSet}
+                targetSets={x.targetSets}
                 targetRelicsMainStats={x.targetRelicsMainStats}
               />
               <RelicDiffDisplay
                 slot="feet"
                 missingMainStats={x.missingMainStats}
                 missingSet={x.missingSet}
-                targetRelicSet={x.targetRelicSet}
+                targetSets={x.targetSets}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+              <RelicDiffDisplay
+                slot="planarSphere"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetSets={x.targetSets}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+              <RelicDiffDisplay
+                slot="linkRope"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetSets={x.targetSets}
                 targetRelicsMainStats={x.targetRelicsMainStats}
               />
             </ul>
@@ -125,17 +139,23 @@ function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
 function RelicDiffDisplay({
   missingMainStats,
   missingSet,
-  targetRelicSet,
+  targetSets,
   targetRelicsMainStats,
   slot,
 }: Omit<DiffOutput[number], "currentCharacterState"> & {
-  slot: "head" | "hands" | "body" | "feet";
+  slot: "head" | "hands" | "body" | "feet" | "planarSphere" | "linkRope";
 }) {
+  const targetSetName =
+    slot === "planarSphere" || slot === "linkRope"
+      ? targetSets.ornaments.name
+      : targetSets.relics.name;
+
   const set = (missingSet[slot] && (
     <span className="text-green-700">{missingSet[slot].name}</span>
-  )) || <span>{targetRelicSet.name}</span>;
+  )) || <span>{targetSetName}</span>;
   const mainStats =
-    (slot === "body" || slot === "feet") &&
+    slot !== "head" &&
+    slot !== "hands" &&
     ((missingMainStats[slot] && (
       <span className="text-green-700">({missingMainStats[slot]})</span>
     )) || <span>({targetRelicsMainStats[slot]})</span>);
