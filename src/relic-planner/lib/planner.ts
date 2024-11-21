@@ -1,4 +1,10 @@
-import { RelicSet } from "../../data/game-data";
+import {
+  Cavern,
+  CavernName,
+  caverns,
+  RelicSet,
+  RelicSetName,
+} from "../../data/game-data";
 import { OptimalMainStats } from "../../data/prydwen";
 import {
   MainStat,
@@ -11,7 +17,6 @@ export type DiffInput = Array<{
   currentCharacterState: PlayerCharacterInfo;
   targetSets: { relics: RelicSet; ornaments: RelicSet };
   targetRelicsMainStats: OptimalMainStats;
-  // TODO: maybe targetRelicSubstats?
 }>;
 
 export type DiffOutput = Array<{
@@ -35,9 +40,62 @@ export type DiffOutput = Array<{
   };
 }>;
 
-// TODO: Actually plan where to farm and what main stats to look out for
-export function buildPlan(input: DiffInput): DiffOutput {
-  return diffCurrentAndTargetState(input);
+export type Plan = {
+  whereToFarm: Array<{
+    cavern: Cavern;
+    votes: number;
+  }>;
+};
+
+export function buildPlan(input: DiffInput): Plan {
+  const diff = diffCurrentAndTargetState(input);
+
+  const cavernVotes: Record<CavernName, number> = {
+    "Path of Gelid Wind": 0,
+    "Path of Jabbing Punch": 0,
+    "Path of Drifting": 0,
+    "Path of Providence": 0,
+    "Path of Holy Hymn": 0,
+    "Path of Conflagration": 0,
+    "Path of Elixir Seekers": 0,
+    "Path of Darkness": 0,
+    "Path of Uncertainty": 0,
+    "Path of Dreamdive": 0,
+    "Path of Cavalier": 0,
+  };
+
+  for (const character of diff) {
+    const missingRelics = [
+      character.missingSet.head,
+      character.missingSet.hands,
+      character.missingSet.body,
+      character.missingSet.feet,
+
+      // Relics that don't have their main stats also count when considering where to farm,
+      // so let's farm their target sets
+      character.missingMainStats.body === null
+        ? null
+        : character.targetSets.relics,
+      character.missingMainStats.feet === null
+        ? null
+        : character.targetSets.relics,
+    ].filter((x) => x !== null);
+
+    for (const relicSet of missingRelics) {
+      const cavern = cavernWhereToFarmRelic(relicSet.name);
+      cavernVotes[cavern.name]++;
+    }
+  }
+
+  const whereToFarm = caverns.map((cavern) => ({
+    cavern,
+    votes: cavernVotes[cavern.name],
+  }));
+  whereToFarm.sort((a, b) => -(a.votes - b.votes)); // Sort descending
+
+  return {
+    whereToFarm,
+  };
 }
 
 export function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
@@ -142,4 +200,16 @@ export function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
   );
 
   return withMissingSets;
+}
+
+function cavernWhereToFarmRelic(relicSet: RelicSetName) {
+  const cavern = caverns.find((c) =>
+    (c.drops as unknown as string[]).includes(relicSet)
+  );
+
+  if (cavern === undefined) {
+    throw `no cavern found for relic set "${relicSet}"`;
+  }
+
+  return cavern;
 }

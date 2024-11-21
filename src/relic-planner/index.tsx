@@ -11,7 +11,11 @@ import {
   optimalMainStats,
   optimalSets,
 } from "../data/prydwen";
-import { diffCurrentAndTargetState, DiffOutput } from "./lib/planner";
+import {
+  buildPlan,
+  diffCurrentAndTargetState,
+  DiffOutput,
+} from "./lib/planner";
 
 type CharacterAndRelicInformation = {
   character: PlayerCharacterInfo;
@@ -62,11 +66,39 @@ export function RelicPlanner() {
     <div className="grid grid-cols-2 gap-4">
       <div>
         <span>
-          What you need to <span className="text-green-700">farm</span>:
+          <strong>What</strong> you need to{" "}
+          <span className="text-green-700">farm</span>:
         </span>
         <RequiredChanges info={selectedCharacters} />
       </div>
+      <div>
+        <span>
+          <strong>Where</strong> you need to farm:
+        </span>
+        <PlanDisplay info={selectedCharacters} />
+      </div>
     </div>
+  );
+}
+
+function PlanDisplay({ info }: { info: CharacterAndRelicInformation[] }) {
+  const plan = buildPlan(
+    info.map((i) => ({
+      currentCharacterState: i.character,
+      targetSets: i.optimalSets,
+      targetRelicsMainStats: i.optimalMainStats,
+    }))
+  );
+
+  return (
+    <ul className="list-disc">
+      {plan.whereToFarm.map((location) => (
+        <li key={location.cavern.name}>
+          {location.cavern.name}: {location.votes} votes (
+          {location.cavern.drops.join(", ")})
+        </li>
+      ))}
+    </ul>
   );
 }
 

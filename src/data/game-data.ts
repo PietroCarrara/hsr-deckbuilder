@@ -3,14 +3,10 @@
 export type CharacterName = keyof typeof gameData.characters;
 export type RelicSetName = keyof typeof gameData.relics;
 export type RelicSet = (typeof gameData.relics)[RelicSetName];
-export type CavernName = keyof typeof caverns;
-type Cavern = {
-  name: string;
-  location: string;
-  drops: [RelicSetName, RelicSetName];
-};
+export type Cavern = (typeof caverns)[number];
+export type CavernName = Cavern["name"];
 
-export const caverns: Cavern[] = [
+export const caverns = [
   {
     name: "Path of Gelid Wind",
     location: "Storage Zone, Herta Space Station",
@@ -52,6 +48,11 @@ export const caverns: Cavern[] = [
     drops: ["The Ashblazing Grand Duke", "Prisoner in Deep Confinement"],
   },
   {
+    name: "Path of Uncertainty",
+    location: "The Shackling Prison, The Xianzhou Luofu",
+    drops: ["Sacerdos' Relived Ordeal", "Scholar Lost in Erudition"],
+  },
+  {
     name: "Path of Dreamdive",
     location: "The Reverie (Dreamscape), Penacony",
     drops: [
@@ -64,7 +65,7 @@ export const caverns: Cavern[] = [
     location: "Penacony Grand Theater, Penacony",
     drops: ["Iron Cavalry Against the Scourge", "The Wind-Soaring Valorous"],
   },
-];
+] as const;
 
 export const gameData = {
   characters: {
@@ -2797,5 +2798,5 @@ export const gameData = {
       skills:
         "Increases Outgoing Healing by <b>10%</b>.,At the start of the battle, immediately regenerates 1 Skill Point.",
     },
-  },
+  } as const,
 };
