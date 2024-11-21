@@ -87,6 +87,20 @@ function RequiredChanges({ info }: { info: CharacterAndRelicInformation[] }) {
             {x.currentCharacterState.name}
             <ul className="ml-4 list-disc">
               <RelicDiffDisplay
+                slot="head"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetRelicSet={x.targetRelicSet}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+              <RelicDiffDisplay
+                slot="hands"
+                missingMainStats={x.missingMainStats}
+                missingSet={x.missingSet}
+                targetRelicSet={x.targetRelicSet}
+                targetRelicsMainStats={x.targetRelicsMainStats}
+              />
+              <RelicDiffDisplay
                 slot="body"
                 missingMainStats={x.missingMainStats}
                 missingSet={x.missingSet}
@@ -115,19 +129,26 @@ function RelicDiffDisplay({
   targetRelicsMainStats,
   slot,
 }: Omit<DiffOutput[number], "currentCharacterState"> & {
-  slot: "body" | "feet";
+  slot: "head" | "hands" | "body" | "feet";
 }) {
   const set = (missingSet[slot] && (
     <span className="text-green-700">{missingSet[slot].name}</span>
   )) || <span>{targetRelicSet.name}</span>;
-  const mainStats = (missingMainStats[slot] && (
-    <span className="text-green-700">{missingMainStats[slot]}</span>
-  )) || <span>{targetRelicsMainStats[slot]}</span>;
+  const mainStats =
+    (slot === "body" || slot === "feet") &&
+    ((missingMainStats[slot] && (
+      <span className="text-green-700">({missingMainStats[slot]})</span>
+    )) || <span>({targetRelicsMainStats[slot]})</span>);
+
+  const needsToShow =
+    missingSet[slot] !== null ||
+    ((slot === "body" || slot === "feet") && missingMainStats[slot]);
 
   return (
+    needsToShow &&
     (missingMainStats.body || missingSet.body) && (
       <li>
-        {slot}: {set} ({mainStats})
+        {slot}: {set} {mainStats}
       </li>
     )
   );

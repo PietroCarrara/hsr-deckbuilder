@@ -26,6 +26,8 @@ export type DiffOutput = Array<{
     linkRope: MainStat | null;
   };
   missingSet: {
+    head: RelicSet | null;
+    hands: RelicSet | null;
     body: RelicSet | null;
     feet: RelicSet | null;
     planarSphere: RelicSet | null;
@@ -78,6 +80,12 @@ function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
 
   const withMissingSets = withMissingMainStats.map(
     ({ targetRelicSet, currentCharacterState, ...rest }) => {
+      const headRelicId = currentCharacterState.relics.find(
+        (r) => relicPosToSlot[r.pos] === "head"
+      )?.id;
+      const handsRelicId = currentCharacterState.relics.find(
+        (r) => relicPosToSlot[r.pos] === "hands"
+      )?.id;
       const bodyRelicId = currentCharacterState.relics.find(
         (r) => relicPosToSlot[r.pos] === "body"
       )?.id;
@@ -85,6 +93,8 @@ function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
         (r) => relicPosToSlot[r.pos] === "feet"
       )?.id;
 
+      const headRelicSetId = headRelicId?.toString().substring(1, 4);
+      const handsRelicSetId = handsRelicId?.toString().substring(1, 4);
       const bodyRelicSetId = bodyRelicId?.toString().substring(1, 4);
       const feetRelicSetId = feetRelicId?.toString().substring(1, 4);
 
@@ -92,6 +102,14 @@ function diffCurrentAndTargetState(input: DiffInput): DiffOutput {
         currentCharacterState,
         targetRelicSet,
         missingSet: {
+          head:
+            headRelicSetId && headRelicSetId === targetRelicSet.id
+              ? null
+              : targetRelicSet,
+          hands:
+            handsRelicSetId && handsRelicSetId === targetRelicSet.id
+              ? null
+              : targetRelicSet,
           body:
             bodyRelicSetId && bodyRelicSetId === targetRelicSet.id
               ? null
